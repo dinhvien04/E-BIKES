@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng ký - E-BIKES</title>
+  <style>
+    body {
+  /* Video nền toàn màn hình */
+		#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width:100%;
+    min-height:50%;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+}#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 50%;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+}
+header {
+    background-color: rgba(255, 255, 255, 0.2); /* Trắng trong suốt */
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #f8a100;
+    box-shadow: 0 4px 10px rgba(255, 102, 0, 0.5); /* viền cam */
+    backdrop-filter: blur(8px); /* Làm mờ nền phía sau */
+}
+
+
+    box-shadow: 0 4px 10px rgba(255, 102, 0, 0.5);
+}
+/* Tiêu đề trong logo */
+.logo h1 {
+    font-size: 2.2rem;
+    color: #f8a100;
+    margin: 0;
+}
+.auth-form h2 {
+    color: #E0E0E0;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.auth-form .form-group {
+    margin-bottom: 1.2rem;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #E0E0E0;
+    font-weight: bold;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background: transparent; /* Trong suốt để nhìn thấy video */
+  color: #fff;
+}
+
+
+
+    .background-overlay {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      z-index: 0;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: rgba(30, 29, 29, 0.9);
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #f8a100;
+      box-shadow: 0 4px 10px rgba(255, 102, 0, 0.5);
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    nav ul li a:hover {
+      color: #dac446;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 30px 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 153, 0, 0.4);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .form-container h2 {
+      color: #f8a100;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background-color: #f8a100;
+      color: #1f1f1f;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #dac446;
+    }
+
+    .form-switch {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .form-switch a {
+      color: #f8a100;
+      text-decoration: none;
+    }
+
+    .form-switch a:hover {
+      text-decoration: underline;
+    }
+
+    /* Phần liên hệ */
+#lien-he {
+    text-align: center;
+    background-color: #2c3e50; /* Màu nền xám tối */
+    padding: 30px;
+    border-radius: 5px;
+    color: white; /* Màu trắng cho chữ */
+    margin-top: 3rem; /* Khoảng cách phía trên */
+}
+
+#lien-he h2 {
+    font-size: 1.8rem; /* Kích thước chữ tiêu đề */
+    color: #f8a100; /* Màu cam sáng cho tiêu đề */
+    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+}
+
+#lien-he p {
+    font-size: 1.1rem; /* Kích thước chữ cho đoạn văn */
+    margin: 10px 0; /* Khoảng cách trên/dưới các đoạn văn */
+    line-height: 1.6; /* Khoảng cách giữa các dòng */
+}
+
+#lien-he a {
+    color: white; /* Màu vàng nhạt cho liên kết */
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Hiệu ứng chuyển màu và gạch chân */
+}
+
+#lien-he a:hover {
+    color: #f8a100; /* Màu cam sáng khi hover */
+    text-decoration: underline; /* Gạch chân khi hover */
+}
+
+#lien-he a:focus {
+    outline: none; /* Loại bỏ viền focus mặc định khi nhấn vào liên kết */
+    color: #f8a100; /* Giữ màu khi focus vào liên kết */
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <header>
+      <div class="logo">E - BIKES</div>
+      <nav>
+        <ul>
+          <li><a href="#">Trang chủ</a></li>
+          <li><a href="#">Giới thiệu</a></li>
+          <li><a href="#lien-he">Liên hệ</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="form-container">
+         <h2>Đăng ký</h2>
+        <form action="xulydangky.php" method="POST">
+          <input type="text" name="fullname" placeholder="Họ tên" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="password" name="password" placeholder="Mật khẩu" required />
+          <input type="password" name="confirm_password" placeholder="Xác nhận mật khẩu" required />
+          <button type="submit">Đăng ký</button>
+        </form>
+        <div class="form-switch">
+          Đã có tài khoản? <a href="#">Đăng nhập</a>
+        </div>
+      </div>
+    </main>
+
+    <footer id="lien-he">
+      &copy; 2025 E-BIKES. <a href="#">Chính sách</a>.
+    </footer>
+  </div>
+  <!-- Video nền -->
+  <video autoplay muted loop id="background-video">
+    <source src= "Untitled video - Made with Clipchamp.mp4">
+    Trình duyệt không hỗ trợ video.
+  </video>
+</body>
+</html>
