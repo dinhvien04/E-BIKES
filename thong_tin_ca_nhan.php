@@ -120,7 +120,7 @@ if (!$user) {
             <button onclick="toggleEdit()" style="background: #4CAF50;">Chỉnh sửa</button>
             <a href="doi_mat_khau.php" style="background: #f39c12; margin-left: 10px;">Đổi mật khẩu</a>
             <a href="lich_su_dat_hang.php" style="background: #2980b9; margin-left: 10px;">Lịch sử đặt hàng</a>
-            <a href="trang_chu.php">Về trang chủ</a>
+            <a href="trangchu.php">Về trang chủ</a>
             <a href="logout.php" style="margin-left:20px; background:#e53935;">Đăng xuất</a>
         </div>
     </div>

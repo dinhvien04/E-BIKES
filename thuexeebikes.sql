@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: May 25, 2025 at 04:56 PM
--- Server version: 9.1.0
--- PHP Version: 8.3.14
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th7 10, 2025 lúc 04:45 PM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,30 +18,26 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `thuexeebikes`
+-- Cơ sở dữ liệu: `thuexeebikes`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chi_tiet_don_thue`
+-- Cấu trúc bảng cho bảng `chi_tiet_don_thue`
 --
 
-DROP TABLE IF EXISTS `chi_tiet_don_thue`;
-CREATE TABLE IF NOT EXISTS `chi_tiet_don_thue` (
-  `ma_chi_tiet` int NOT NULL AUTO_INCREMENT,
-  `ma_don_thue` int NOT NULL,
-  `ma_xe` int NOT NULL,
+CREATE TABLE `chi_tiet_don_thue` (
+  `ma_chi_tiet` int(11) NOT NULL,
+  `ma_don_thue` int(11) NOT NULL,
+  `ma_xe` int(11) NOT NULL,
   `gia_thue` decimal(10,2) NOT NULL,
-  `so_ngay_thue` int NOT NULL,
-  `thanh_tien` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`ma_chi_tiet`),
-  KEY `ma_don_thue` (`ma_don_thue`),
-  KEY `ma_xe` (`ma_xe`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `so_ngay_thue` int(11) NOT NULL,
+  `thanh_tien` decimal(10,2) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `chi_tiet_don_thue`
+-- Đang đổ dữ liệu cho bảng `chi_tiet_don_thue`
 --
 
 INSERT INTO `chi_tiet_don_thue` (`ma_chi_tiet`, `ma_don_thue`, `ma_xe`, `gia_thue`, `so_ngay_thue`, `thanh_tien`) VALUES
@@ -64,26 +60,35 @@ INSERT INTO `chi_tiet_don_thue` (`ma_chi_tiet`, `ma_don_thue`, `ma_xe`, `gia_thu
 (17, 17, 32, 720000.00, 5, 3600000.00),
 (18, 18, 38, 820000.00, 5, 4100000.00),
 (19, 19, 9, 350000.00, 4, 1400000.00),
-(20, 20, 13, 425000.00, 4, 1700000.00);
+(20, 20, 13, 425000.00, 4, 1700000.00),
+(21, 21, 3, 115000.00, 1, 115000.00),
+(22, 21, 7, 120000.00, 1, 120000.00),
+(23, 22, 7, 120000.00, 1, 120000.00),
+(24, 23, 3, 115000.00, 1, 115000.00),
+(25, 24, 7, 120000.00, 158, 18965000.00),
+(26, 24, 16, 185000.00, 158, 29237708.33),
+(27, 24, 3, 115000.00, 158, 18174791.67),
+(28, 25, 17, 160000.00, 158, 25286666.67),
+(29, 25, 3, 115000.00, 158, 18174791.67),
+(30, 26, 3, 115000.00, 158, 18174791.67),
+(31, 27, 2, 110000.00, 155, 17054583.33);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chi_tiet_xe`
+-- Cấu trúc bảng cho bảng `chi_tiet_xe`
 --
 
-DROP TABLE IF EXISTS `chi_tiet_xe`;
-CREATE TABLE IF NOT EXISTS `chi_tiet_xe` (
-  `ma_xe` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `chi_tiet_xe` (
+  `ma_xe` int(11) NOT NULL,
   `mau_sac` varchar(50) DEFAULT NULL,
-  `dung_tich_xi_lanh` int DEFAULT NULL,
+  `dung_tich_xi_lanh` int(11) DEFAULT NULL,
   `loai_xe` varchar(50) DEFAULT NULL,
-  `mo_ta` text,
-  PRIMARY KEY (`ma_xe`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `mo_ta` text DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `chi_tiet_xe`
+-- Đang đổ dữ liệu cho bảng `chi_tiet_xe`
 --
 
 INSERT INTO `chi_tiet_xe` (`ma_xe`, `mau_sac`, `dung_tich_xi_lanh`, `loai_xe`, `mo_ta`) VALUES
@@ -119,27 +124,23 @@ INSERT INTO `chi_tiet_xe` (`ma_xe`, `mau_sac`, `dung_tich_xi_lanh`, `loai_xe`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dat_xe`
+-- Cấu trúc bảng cho bảng `dat_xe`
 --
 
-DROP TABLE IF EXISTS `dat_xe`;
-CREATE TABLE IF NOT EXISTS `dat_xe` (
-  `ma_dat_xe` int NOT NULL AUTO_INCREMENT,
-  `ma_nguoi_dung` int NOT NULL,
-  `ma_xe` int NOT NULL,
+CREATE TABLE `dat_xe` (
+  `ma_dat_xe` int(11) NOT NULL,
+  `ma_nguoi_dung` int(11) NOT NULL,
+  `ma_xe` int(11) NOT NULL,
   `ngay_dat` date NOT NULL,
   `thoi_gian_bat_dau` date NOT NULL,
   `thoi_gian_ket_thuc` date NOT NULL,
-  `ghi_chu` text,
+  `ghi_chu` text DEFAULT NULL,
   `trang_thai` enum('cho_xu_ly','da_duyet','da_huy') DEFAULT 'cho_xu_ly',
-  `ngay_tao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ma_dat_xe`),
-  KEY `ma_nguoi_dung` (`ma_nguoi_dung`),
-  KEY `ma_xe` (`ma_xe`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `ngay_tao` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `dat_xe`
+-- Đang đổ dữ liệu cho bảng `dat_xe`
 --
 
 INSERT INTO `dat_xe` (`ma_dat_xe`, `ma_nguoi_dung`, `ma_xe`, `ngay_dat`, `thoi_gian_bat_dau`, `thoi_gian_ket_thuc`, `ghi_chu`, `trang_thai`, `ngay_tao`) VALUES
@@ -167,24 +168,21 @@ INSERT INTO `dat_xe` (`ma_dat_xe`, `ma_nguoi_dung`, `ma_xe`, `ngay_dat`, `thoi_g
 -- --------------------------------------------------------
 
 --
--- Table structure for table `don_thue`
+-- Cấu trúc bảng cho bảng `don_thue`
 --
 
-DROP TABLE IF EXISTS `don_thue`;
-CREATE TABLE IF NOT EXISTS `don_thue` (
-  `ma_don_thue` int NOT NULL AUTO_INCREMENT,
-  `ma_nguoi_dung` int NOT NULL,
+CREATE TABLE `don_thue` (
+  `ma_don_thue` int(11) NOT NULL,
+  `ma_nguoi_dung` int(11) NOT NULL,
   `ngay_thue` date NOT NULL,
   `ngay_tra` date NOT NULL,
   `tong_tien` decimal(10,2) NOT NULL,
   `tinh_trang` enum('da_dat','dang_thue','hoan_thanh','da_huy') DEFAULT 'da_dat',
-  `ngay_tao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ma_don_thue`),
-  KEY `ma_nguoi_dung` (`ma_nguoi_dung`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `ngay_tao` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `don_thue`
+-- Đang đổ dữ liệu cho bảng `don_thue`
 --
 
 INSERT INTO `don_thue` (`ma_don_thue`, `ma_nguoi_dung`, `ngay_thue`, `ngay_tra`, `tong_tien`, `tinh_trang`, `ngay_tao`) VALUES
@@ -207,25 +205,30 @@ INSERT INTO `don_thue` (`ma_don_thue`, `ma_nguoi_dung`, `ngay_thue`, `ngay_tra`,
 (17, 17, '2025-06-12', '2025-06-18', 3600000.00, 'hoan_thanh', '2025-05-20 02:53:31'),
 (18, 18, '2025-06-13', '2025-06-19', 4100000.00, 'dang_thue', '2025-05-20 02:53:31'),
 (19, 19, '2025-06-14', '2025-06-20', 1400000.00, 'hoan_thanh', '2025-05-20 02:53:31'),
-(20, 20, '2025-06-15', '2025-06-21', 1700000.00, 'da_dat', '2025-05-20 02:53:31');
+(20, 20, '2025-06-15', '2025-06-21', 1700000.00, 'da_dat', '2025-05-20 02:53:31'),
+(21, 17, '2025-06-06', '2025-02-12', 235000.00, 'da_dat', '2025-06-06 15:10:00'),
+(22, 17, '2025-06-06', '2025-11-11', 18965000.00, 'da_dat', '2025-06-06 15:14:56'),
+(23, 17, '2025-06-06', '2025-11-11', 18174791.67, 'da_huy', '2025-06-06 15:23:59'),
+(24, 17, '2025-06-06', '2025-11-11', 66377500.00, 'da_dat', '2025-06-06 15:39:33'),
+(25, 17, '2025-06-06', '2025-11-11', 43461458.33, 'da_dat', '2025-06-06 15:48:41'),
+(26, 17, '2025-06-06', '2025-11-11', 18174791.67, 'da_dat', '2025-06-06 15:53:36'),
+(27, 19, '2025-07-09', '2025-12-11', 17054583.33, 'hoan_thanh', '2025-07-09 14:37:51');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `faq`
+-- Cấu trúc bảng cho bảng `faq`
 --
 
-DROP TABLE IF EXISTS `faq`;
-CREATE TABLE IF NOT EXISTS `faq` (
-  `ma_faq` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `faq` (
+  `ma_faq` int(11) NOT NULL,
   `cau_hoi` text NOT NULL,
   `cau_tra_loi` text NOT NULL,
-  `hien_thi` tinyint(1) DEFAULT '1',
-  PRIMARY KEY (`ma_faq`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `hien_thi` tinyint(1) DEFAULT 1
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `faq`
+-- Đang đổ dữ liệu cho bảng `faq`
 --
 
 INSERT INTO `faq` (`ma_faq`, `cau_hoi`, `cau_tra_loi`, `hien_thi`) VALUES
@@ -248,23 +251,21 @@ INSERT INTO `faq` (`ma_faq`, `cau_hoi`, `cau_tra_loi`, `hien_thi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lien_he`
+-- Cấu trúc bảng cho bảng `lien_he`
 --
 
-DROP TABLE IF EXISTS `lien_he`;
-CREATE TABLE IF NOT EXISTS `lien_he` (
-  `ma_lien_he` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `lien_he` (
+  `ma_lien_he` int(11) NOT NULL,
   `ho_ten` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `so_dien_thoai` varchar(20) DEFAULT NULL,
   `tieu_de` varchar(200) DEFAULT NULL,
-  `noi_dung` text,
-  `ngay_gui` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ma_lien_he`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `noi_dung` text DEFAULT NULL,
+  `ngay_gui` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `lien_he`
+-- Đang đổ dữ liệu cho bảng `lien_he`
 --
 
 INSERT INTO `lien_he` (`ma_lien_he`, `ho_ten`, `email`, `so_dien_thoai`, `tieu_de`, `noi_dung`, `ngay_gui`) VALUES
@@ -297,101 +298,71 @@ INSERT INTO `lien_he` (`ma_lien_he`, `ho_ten`, `email`, `so_dien_thoai`, `tieu_d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nguoi_dung`
+-- Cấu trúc bảng cho bảng `nguoi_dung`
 --
 
-DROP TABLE IF EXISTS `nguoi_dung`;
-CREATE TABLE IF NOT EXISTS `nguoi_dung` (
-  `ma_nguoi_dung` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `nguoi_dung` (
+  `ma_nguoi_dung` int(11) NOT NULL,
   `ho_ten` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `mat_khau` varchar(255) NOT NULL,
   `so_dien_thoai` varchar(20) DEFAULT NULL,
-  `dia_chi` text,
+  `dia_chi` text DEFAULT NULL,
   `cccd` varchar(20) DEFAULT NULL,
   `ngay_sinh` date DEFAULT NULL,
-  `ngay_tao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `vai_tro` enum('user','admin') DEFAULT 'user',
-  PRIMARY KEY (`ma_nguoi_dung`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `ngay_tao` timestamp NULL DEFAULT current_timestamp(),
+  `vai_tro` enum('user','admin') DEFAULT 'user'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `nguoi_dung`
+-- Đang đổ dữ liệu cho bảng `nguoi_dung`
 --
 
 INSERT INTO `nguoi_dung` (`ma_nguoi_dung`, `ho_ten`, `email`, `mat_khau`, `so_dien_thoai`, `dia_chi`, `cccd`, `ngay_sinh`, `ngay_tao`, `vai_tro`) VALUES
-(1, 'Nguyễn Văn A', 'nguyenvana@example.com', 'hashed_password_1', '0901234567', 'Hà Nội', '012345678', '1990-01-15', '2025-05-20 02:20:59', 'user'),
-(2, 'Trần Thị B', 'tranthib@example.com', 'hashed_password_2', '0912345678', 'Hồ Chí Minh', '023456789', '1992-05-20', '2025-05-20 02:20:59', 'user'),
-(3, 'Lê Văn C', 'levanc@example.com', 'hashed_password_3', '0987654321', 'Đà Nẵng', '034567890', '1988-09-10', '2025-05-20 02:20:59', 'user'),
-(4, 'Phạm Thị D', 'phamthid@example.com', 'hashed_password_4', '0978123456', 'Cần Thơ', '045678901', '1995-12-05', '2025-05-20 02:20:59', 'user'),
-(5, 'Hoàng Văn E', 'hoangvane@example.com', 'hashed_password_5', '0967123456', 'Hải Phòng', '056789012', '1991-03-22', '2025-05-20 02:20:59', 'user'),
-(6, 'Đỗ Thị F', 'dothif@example.com', 'hashed_password_6', '0945123456', 'Quảng Ninh', '067890123', '1989-07-30', '2025-05-20 02:20:59', 'user'),
-(7, 'Vũ Văn G', 'vuvang@example.com', 'hashed_password_7', '0934123456', 'Nghệ An', '078901234', '1993-11-17', '2025-05-20 02:20:59', 'user'),
-(8, 'Bùi Thị H', 'buithih@example.com', 'hashed_password_8', '0923123456', 'Thừa Thiên Huế', '089012345', '1994-04-25', '2025-05-20 02:20:59', 'user'),
-(9, 'Trịnh Văn I', 'trinhvani@example.com', 'hashed_password_9', '0912123456', 'Bình Dương', '090123456', '1990-08-13', '2025-05-20 02:20:59', 'user'),
-(10, 'Phan Thị J', 'phanthij@example.com', 'hashed_password_10', '0901123456', 'Long An', '101234567', '1996-02-28', '2025-05-20 02:20:59', 'user'),
-(14, 'bảo yến', 'thuthao6424@gmail.com', '$2y$10$qOvVtXZAuBJXyg.AUsrRoueqKsgV51BfBtQod9mWVYIXDHc/Yyw7K', NULL, NULL, NULL, NULL, '2025-05-20 19:31:38', 'user'),
-(15, 'bảo yến', 'thuthao64245@gmail.com', '$2y$10$FmnUq0POxULHjlZzZYzQCuG.0DlcCd8SFeobANdtlJfe17R2DguOq', NULL, NULL, NULL, NULL, '2025-05-20 23:34:27', 'user'),
-(16, 'bảo yến', 'thaothao222@gmail.com', '$2y$10$M7YM6YfSasw2R63xaHuAVe95wMXh.D1FFm29znFzr5xRVrWvgCvfe', NULL, NULL, NULL, NULL, '2025-05-21 00:19:36', 'user');
+(1, 'Vien', 'dinhvien@gmail.com', '$2y$10$DFFApBJfArYJgsvWyUPur.vbd6SukhMprUT.q1/GQBes68dGwGM6a', NULL, NULL, NULL, NULL, '2025-07-10 14:39:40', 'user');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nhan_vien`
+-- Cấu trúc bảng cho bảng `nhan_vien`
 --
 
-DROP TABLE IF EXISTS `nhan_vien`;
-CREATE TABLE IF NOT EXISTS `nhan_vien` (
-  `ma_nhan_vien` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `nhan_vien` (
+  `ma_nhan_vien` int(11) NOT NULL,
   `ho_ten` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `mat_khau` varchar(255) NOT NULL,
   `so_dien_thoai` varchar(20) DEFAULT NULL,
   `chuc_vu` varchar(50) DEFAULT NULL,
-  `dia_chi` text,
-  `luong` decimal(15,2) DEFAULT '0.00',
-  `ngay_tao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `trang_thai` enum('dang_lam','da_nghi') DEFAULT 'dang_lam',
-  PRIMARY KEY (`ma_nhan_vien`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `dia_chi` text DEFAULT NULL,
+  `luong` decimal(15,2) DEFAULT 0.00,
+  `ngay_tao` timestamp NULL DEFAULT current_timestamp(),
+  `trang_thai` enum('dang_lam','da_nghi') DEFAULT 'dang_lam'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `nhan_vien`
+-- Đang đổ dữ liệu cho bảng `nhan_vien`
 --
 
 INSERT INTO `nhan_vien` (`ma_nhan_vien`, `ho_ten`, `email`, `mat_khau`, `so_dien_thoai`, `chuc_vu`, `dia_chi`, `luong`, `ngay_tao`, `trang_thai`) VALUES
-(1, 'Lê Thị Mai', 'lethimai@example.com', 'hashed_password_1', '0901234561', 'Quản lý', 'Hà Nội', 15000000.00, '2025-05-20 02:20:59', 'dang_lam'),
-(2, 'Trần Văn Nam', 'tranvannam@example.com', 'hashed_password_2', '0901234562', 'Nhân viên kinh doanh', 'Hồ Chí Minh', 10000000.00, '2025-05-20 02:20:59', 'dang_lam'),
-(3, 'Phạm Thị Hoa', 'phamthihoa@example.com', 'hashed_password_3', '0901234563', 'Nhân viên kỹ thuật', 'Đà Nẵng', 9000000.00, '2025-05-20 02:20:59', 'dang_lam'),
-(4, 'Nguyễn Văn Bình', 'nguyenvanbinh@example.com', 'hashed_password_4', '0901234564', 'Nhân viên chăm sóc khách hàng', 'Cần Thơ', 8500000.00, '2025-05-20 02:20:59', 'dang_lam'),
-(5, 'Hoàng Thị Lan', 'hoangthilan@example.com', 'hashed_password_5', '0901234565', 'Kế toán', 'Hải Phòng', 9500000.00, '2025-05-20 02:20:59', 'dang_lam'),
-(6, 'Đỗ Văn Hùng', 'dovanhung@example.com', 'hashed_password_6', '0901234566', 'Lái xe giao hàng', 'Quảng Ninh', 7000000.00, '2025-05-20 02:20:59', 'dang_lam'),
-(7, 'Vũ Thị Hạnh', 'vuthihanh@example.com', 'hashed_password_7', '0901234567', 'Nhân viên bảo trì', 'Nghệ An', 8000000.00, '2025-05-20 02:20:59', 'dang_lam'),
-(8, 'Bùi Văn Dũng', 'buivandung@example.com', 'hashed_password_8', '0901234568', 'Quản lý kho', 'Thừa Thiên Huế', 11000000.00, '2025-05-20 02:20:59', 'dang_lam'),
-(9, 'Trịnh Thị Hương', 'trinhthihuong@example.com', 'hashed_password_9', '0901234569', 'Hỗ trợ kỹ thuật', 'Bình Dương', 9000000.00, '2025-05-20 02:20:59', 'dang_lam'),
-(10, 'Phan Văn Quang', 'phanvanquang@example.com', 'hashed_password_10', '0901234570', 'Nhân viên marketing', 'Long An', 10000000.00, '2025-05-20 02:20:59', 'dang_lam'),
-(11, 'Admin', 'admin@ebikes.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '0123456789', 'Quản trị viên', 'Hà Nội', 20000000.00, '2025-05-20 02:20:59', 'dang_lam');
+(1, 'Admin', 'admin@ebikes.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '0123456789', 'Quản trị viên', 'Hà Nội', 20000000.00, '2025-05-20 02:20:59', 'dang_lam');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thanh_toan`
+-- Cấu trúc bảng cho bảng `thanh_toan`
 --
 
-DROP TABLE IF EXISTS `thanh_toan`;
-CREATE TABLE IF NOT EXISTS `thanh_toan` (
-  `ma_thanh_toan` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `thanh_toan` (
+  `ma_thanh_toan` int(11) NOT NULL,
   `ma_don_thue` varchar(10) NOT NULL,
-  `ngay_thanh_toan` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `ngay_thanh_toan` timestamp NULL DEFAULT current_timestamp(),
   `so_tien` decimal(10,2) NOT NULL,
-  `phuong_thuc` enum('tien_mat','the_tin_dung','chuyen_khoan','momo','zalo_pay') DEFAULT NULL,
-  PRIMARY KEY (`ma_thanh_toan`),
-  KEY `ma_don_thue` (`ma_don_thue`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `phuong_thuc` enum('tien_mat','the_tin_dung','chuyen_khoan','momo','zalo_pay') DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `thanh_toan`
+-- Đang đổ dữ liệu cho bảng `thanh_toan`
 --
 
 INSERT INTO `thanh_toan` (`ma_thanh_toan`, `ma_don_thue`, `ngay_thanh_toan`, `so_tien`, `phuong_thuc`) VALUES
@@ -419,25 +390,22 @@ INSERT INTO `thanh_toan` (`ma_thanh_toan`, `ma_don_thue`, `ngay_thanh_toan`, `so
 -- --------------------------------------------------------
 
 --
--- Table structure for table `xe_may`
+-- Cấu trúc bảng cho bảng `xe_may`
 --
 
-DROP TABLE IF EXISTS `xe_may`;
-CREATE TABLE IF NOT EXISTS `xe_may` (
-  `ma_xe` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `xe_may` (
+  `ma_xe` int(11) NOT NULL,
   `hang_xe` varchar(50) NOT NULL,
   `dong_xe` varchar(50) NOT NULL,
   `bien_so` varchar(20) NOT NULL,
   `gia_thue` decimal(10,2) NOT NULL,
   `trang_thai` enum('con_trong','da_thue','bao_tri') DEFAULT 'con_trong',
   `duong_dan_anh` varchar(255) DEFAULT NULL,
-  `so_luong` int DEFAULT 1,
-  PRIMARY KEY (`ma_xe`),
-  UNIQUE KEY `bien_so` (`bien_so`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `so_luong` int(11) DEFAULT 1
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `xe_may`
+-- Đang đổ dữ liệu cho bảng `xe_may`
 --
 
 INSERT INTO `xe_may` (`ma_xe`, `hang_xe`, `dong_xe`, `bien_so`, `gia_thue`, `trang_thai`, `duong_dan_anh`, `so_luong`) VALUES
@@ -469,6 +437,143 @@ INSERT INTO `xe_may` (`ma_xe`, `hang_xe`, `dong_xe`, `bien_so`, `gia_thue`, `tra
 (26, 'Kawasaki', 'Z650', '30D-42346', 650000.00, 'con_trong', 'duong_dan_anh\\x31.jpg', 1),
 (27, 'Yamaha', 'MT-07', '30D-42347', 670000.00, 'con_trong', 'duong_dan_anh\\x32.jpg', 1),
 (28, 'Yamaha', 'XSR700', '30D-42353', 640000.00, 'con_trong', 'duong_dan_anh\\x38.jpg', 1);
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `chi_tiet_don_thue`
+--
+ALTER TABLE `chi_tiet_don_thue`
+  ADD PRIMARY KEY (`ma_chi_tiet`),
+  ADD KEY `ma_don_thue` (`ma_don_thue`),
+  ADD KEY `ma_xe` (`ma_xe`);
+
+--
+-- Chỉ mục cho bảng `chi_tiet_xe`
+--
+ALTER TABLE `chi_tiet_xe`
+  ADD PRIMARY KEY (`ma_xe`);
+
+--
+-- Chỉ mục cho bảng `dat_xe`
+--
+ALTER TABLE `dat_xe`
+  ADD PRIMARY KEY (`ma_dat_xe`),
+  ADD KEY `ma_nguoi_dung` (`ma_nguoi_dung`),
+  ADD KEY `ma_xe` (`ma_xe`);
+
+--
+-- Chỉ mục cho bảng `don_thue`
+--
+ALTER TABLE `don_thue`
+  ADD PRIMARY KEY (`ma_don_thue`),
+  ADD KEY `ma_nguoi_dung` (`ma_nguoi_dung`);
+
+--
+-- Chỉ mục cho bảng `faq`
+--
+ALTER TABLE `faq`
+  ADD PRIMARY KEY (`ma_faq`);
+
+--
+-- Chỉ mục cho bảng `lien_he`
+--
+ALTER TABLE `lien_he`
+  ADD PRIMARY KEY (`ma_lien_he`);
+
+--
+-- Chỉ mục cho bảng `nguoi_dung`
+--
+ALTER TABLE `nguoi_dung`
+  ADD PRIMARY KEY (`ma_nguoi_dung`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Chỉ mục cho bảng `nhan_vien`
+--
+ALTER TABLE `nhan_vien`
+  ADD PRIMARY KEY (`ma_nhan_vien`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Chỉ mục cho bảng `thanh_toan`
+--
+ALTER TABLE `thanh_toan`
+  ADD PRIMARY KEY (`ma_thanh_toan`),
+  ADD KEY `ma_don_thue` (`ma_don_thue`);
+
+--
+-- Chỉ mục cho bảng `xe_may`
+--
+ALTER TABLE `xe_may`
+  ADD PRIMARY KEY (`ma_xe`),
+  ADD UNIQUE KEY `bien_so` (`bien_so`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `chi_tiet_don_thue`
+--
+ALTER TABLE `chi_tiet_don_thue`
+  MODIFY `ma_chi_tiet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT cho bảng `chi_tiet_xe`
+--
+ALTER TABLE `chi_tiet_xe`
+  MODIFY `ma_xe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT cho bảng `dat_xe`
+--
+ALTER TABLE `dat_xe`
+  MODIFY `ma_dat_xe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT cho bảng `don_thue`
+--
+ALTER TABLE `don_thue`
+  MODIFY `ma_don_thue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT cho bảng `faq`
+--
+ALTER TABLE `faq`
+  MODIFY `ma_faq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT cho bảng `lien_he`
+--
+ALTER TABLE `lien_he`
+  MODIFY `ma_lien_he` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT cho bảng `nguoi_dung`
+--
+ALTER TABLE `nguoi_dung`
+  MODIFY `ma_nguoi_dung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT cho bảng `nhan_vien`
+--
+ALTER TABLE `nhan_vien`
+  MODIFY `ma_nhan_vien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT cho bảng `thanh_toan`
+--
+ALTER TABLE `thanh_toan`
+  MODIFY `ma_thanh_toan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT cho bảng `xe_may`
+--
+ALTER TABLE `xe_may`
+  MODIFY `ma_xe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
