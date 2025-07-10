@@ -148,8 +148,8 @@ xeebikes/
 - Password: `password` (cần đặt lại trong database)
 
 **User mẫu:**
-- Email: `nguyenvana@example.com`
-- Password: `hashed_password_1` (cần đặt lại)
+- Email: `dinhvien@gmail.com`
+- Password: `dinhvien9899` (cần đặt lại)
 
 ## 🎯 Luồng hoạt động
 
